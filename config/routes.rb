@@ -1,5 +1,22 @@
 Rails.application.routes.draw do
-  resources :blogs
+  namespace :api do
+    namespace :v1 do
+      resources :blogs, only: [:index, :show] do
+        resources :comments, only: [:index]
+      end
+    end
+  end
+
+  resources :blogs do
+    member do
+      patch :publish
+    end
+    collection do
+      get :published
+      get :unpublished
+    end
+    resources :comments, only: [:create, :destroy]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

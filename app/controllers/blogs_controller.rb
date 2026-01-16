@@ -1,70 +1,71 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: %i[ show edit update destroy ]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :publish]
 
-  # GET /blogs or /blogs.json
   def index
-    @blogs = Blog.all
+    @blogs = Blog.published.order(created_at: :desc)
   end
 
-  # GET /blogs/1 or /blogs/1.json
   def show
   end
 
-  # GET /blogs/new
   def new
     @blog = Blog.new
   end
 
-  # GET /blogs/1/edit
   def edit
   end
 
-  # POST /blogs or /blogs.json
   def create
     @blog = Blog.new(blog_params)
 
-    respond_to do |format|
-      if @blog.save
-        format.html { redirect_to @blog, notice: "Blog was successfully created." }
-        format.json { render :show, status: :created, location: @blog }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
-      end
+    if @blog.save
+      redirect_to @blog, notice:  "Blog was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /blogs/1 or /blogs/1.json
   def update
-    respond_to do |format|
-      if @blog.update(blog_params)
-        format.html { redirect_to @blog, notice: "Blog was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @blog }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
-      end
+    if @blog.update(blog_params)
+      redirect_to @blog, notice:  "Blog was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /blogs/1 or /blogs/1.json
   def destroy
-    @blog.destroy!
+    @blog.destroy
+    redirect_to blogs_url, notice: "Blog was successfully destroyed."
+  end
 
-    respond_to do |format|
-      format.html { redirect_to blogs_path, notice: "Blog was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
+  def publish
+    service = PublishBlogService.new(@blog)
+    
+    if service.call
+      redirect_to @blog, notice: "Blog was successfully published."
+    else
+      redirect_to @blog, alert:  "Failed to publish blog."
     end
   end
+
+  def published
+    @blogs = Blog.published.order(created_at: :desc)
+    render :index
+  end
+
+  def unpublished
+    @blogs = Blog.unpublished.order(created_at: :desc)
+    render :index
+  end
+
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_blog
-      @blog = Blog.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def blog_params
-      params.expect(blog: [ :title, :body ])
-    end
+  def set_blog
+    @blog = Blog.find(params[:id])
+  end
+
+  def blog_params
+    params.require(:blog).permit(:title, :body, :published)
+  end
 end

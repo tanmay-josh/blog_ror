@@ -8,7 +8,7 @@ class Comment < ApplicationRecord
 
   def blog_must_be_published
     if blog && ! blog.published?
-      errors. add(:blog, "must be published to add comments")
+      errors.add(:blog, "must be published to add comments")
     end
   end
 end

@@ -1,8 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Blogs" %>
-
 <h1>Blogs</h1>
+
+<div style="margin-bottom: 20px;">
+  <%= link_to "All Blogs", blogs_path, style: "margin-right: 10px;" %>
+  <%= link_to "Published Blogs", published_blogs_path, style: "margin-right: 10px;" %>
+  <%= link_to "Unpublished Blogs", unpublished_blogs_path %>
+</div>
 
 <div id="blogs">
   <% @blogs.each do |blog| %>

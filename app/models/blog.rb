@@ -6,6 +6,7 @@ class Blog < ApplicationRecord
 
     before_save :titleize_title
     after_create :log_creation
+    after_create :schedule_publication
 
     scope :published, -> { where(published: true) }
     scope :unpublished, -> { where(published: false) }
@@ -13,10 +14,14 @@ class Blog < ApplicationRecord
     private
 
     def titleize_title
-    self.title = title.titleize if title. present?
+        self.title = title.titleize if title.present?
     end
 
     def log_creation
-    Rails.logger.info "New blog created: #{title}"
+        Rails.logger.info "New blog created: #{title}"
+    end
+
+    def schedule_publication
+        PublishBlogJob.set(wait: 1.hour).perform_later(id)
     end
 end

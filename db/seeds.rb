@@ -20,7 +20,7 @@ Blog.destroy_all
     published: i < 10  # First 10 are published
   )
   
-  if blog. published?
+  if blog.published?
     rand(1..5).times do
       blog.comments.create(body: "This is a comment on blog #{i + 1}")
     end
@@ -29,5 +29,5 @@ end
 
 puts "Created #{Blog.count} blogs"
 puts "#{Blog.published.count} published"
-puts "#{Blog.unpublished. count} unpublished"
+puts "#{Blog.unpublished.count} unpublished"
 puts "Created #{Comment.count} comments"
