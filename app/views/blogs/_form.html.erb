@@ -1,27 +1,30 @@
-<%= form_with(model: blog) do |form| %>
+<%= form_with(model: blog, local: true) do |form| %>
   <% if blog.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
-
+    <div class="error-messages">
+      <h3><%= pluralize(blog.errors.count, "error") %> prevented this blog from being saved:</h3>
       <ul>
-        <% blog.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% blog.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
+  <div class="form-group">
+    <%= form. label :title %>
     <%= form.text_field :title %>
   </div>
 
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.textarea :body %>
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, rows: 10 %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.check_box :published %>
+    <%= form.label :published, "Publish immediately" %>
   </div>
+
+  <%= form.submit class: "btn" %>
+  <%= link_to "Cancel", blogs_path, class: "btn", style: "background: #999;" %>
 <% end %>

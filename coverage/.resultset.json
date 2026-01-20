@@ -1,0 +1,307 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/josh/JOSH/Training/ROR/assgn1/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/helpers/blogs_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/helpers/comments_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/models/blog.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          6,
+          3,
+          null,
+          1,
+          null,
+          1,
+          47,
+          null,
+          null,
+          1,
+          45,
+          null,
+          null,
+          1,
+          45,
+          null,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/models/comment.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          13,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/jobs/publish_blog_job.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/jobs/application_job.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/controllers/api/v1/blogs_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          2,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/serializers/blog_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          6,
+          null,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/controllers/blogs_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          4,
+          null,
+          4,
+          2,
+          null,
+          2,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          2,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          2,
+          2,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          7,
+          null,
+          null,
+          1,
+          4,
+          null,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/services/publish_blog_service.rb": {
+        "lines": [
+          1,
+          1,
+          2,
+          null,
+          null,
+          1,
+          2,
+          null,
+          2,
+          2,
+          2,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/controllers/comments_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/josh/JOSH/Training/ROR/assgn1/app/serializers/comment_serializer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      }
+    },
+    "timestamp": 1768888332
+  }
+}

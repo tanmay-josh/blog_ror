@@ -1,36 +1,53 @@
-<p style="color: green"><%= notice %></p>
-<p style="color: red"><%= alert %></p>
+<div class="blog-detail">
+  <div class="blog-meta">
+    <span class="badge <%= @blog.published? ? 'published' : 'unpublished' %>">
+      <%= @blog.published? ? 'Published' : 'Unpublished' %>
+    </span>
+    <span><%= @blog. created_at.strftime("%B %d, %Y") %></span>
+  </div>
 
-<%= render @blog %>
+  <h1><%= @blog.title %></h1>
 
-<div>
-  <%= link_to "Edit this blog", edit_blog_path(@blog) %> |
-  <%= link_to "Back to blogs", blogs_path %>
+  <div class="blog-body">
+    <%= @blog.body %>
+  </div>
 
-  <%= button_to "Destroy this blog", @blog, method: :delete %>
+  <div class="blog-actions">
+    <%= link_to "Edit", edit_blog_path(@blog), class: "btn btn-small" %>
+    <% unless @blog.published? %>
+      <%= button_to "Publish", publish_blog_path(@blog), method: :patch, class: "btn btn-small" %>
+    <% end %>
+    <%= button_to "Delete", @blog, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-small btn-danger" %>
+  </div>
 </div>
 
-<hr>
+<div class="comments-section">
+  <h3>Comments (<%= @blog.comments.count %>)</h3>
 
-<h3>Comments</h3>
+  <% if @blog.comments.any? %>
+    <% @blog.comments.each do |comment| %>
+      <div class="comment">
+        <p><%= comment.body %></p>
+        <div class="comment-meta">
+          <span><%= comment.created_at.strftime("%B %d, %Y at %I:%M %p") %></span>
+          <%= button_to "Delete", blog_comment_path(@blog, comment), method: :delete, data:  { confirm: "Delete this comment?" }, class: "btn btn-small btn-danger" %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No comments yet.  Be the first to comment!</p>
+  <% end %>
 
-<% if @blog.comments.any? %>
-  <%= render @blog.comments %>
-<% else %>
-  <p>No comments yet.</p>
-<% end %>
-
-<hr>
-
-<h3>Add a Comment</h3>
-
-<%= form_with model: [@blog, Comment.new], local: true do |form| %>
-  <div>
-    <%= form.label :body, "Your Comment" %>
-    <%= form.text_area :body, rows: 4, style: "width: 100%;" %>
-  </div>
-
-  <div style="margin-top: 10px;">
-    <%= form.submit "Post Comment" %>
-  </div>
-<% end %>
+  <% if @blog.published? %>
+    <h3 style="margin-top: 30px;">Add a Comment</h3>
+    <%= form_with model: [@blog, Comment.new], local: true do |form| %>
+      <div class="form-group">
+        <%= form.label :body, "Your Comment" %>
+        <%= form.text_area :body, rows: 4 %>
+      </div>
+      <%= form.submit "Post Comment", class: "btn" %>
+    <% end %>
+  <% else %>
+    <p style="margin-top: 20px; color: #999;">Comments are disabled for unpublished blogs.</p>
+  <% end %>
+</div>

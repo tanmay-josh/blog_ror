@@ -1,20 +1,23 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Blogs</h1>
-
-<div style="margin-bottom: 20px;">
-  <%= link_to "All Blogs", blogs_path, style: "margin-right: 10px;" %>
-  <%= link_to "Published Blogs", published_blogs_path, style: "margin-right: 10px;" %>
-  <%= link_to "Unpublished Blogs", unpublished_blogs_path %>
+<div class="page-header">
+  <h1>Blogs</h1>
 </div>
 
-<div id="blogs">
+<% if @blogs.any? %>
   <% @blogs.each do |blog| %>
-    <%= render blog %>
-    <p>
-      <%= link_to "Show this blog", blog %>
-    </p>
+    <div class="blog-card">
+      <h2><%= link_to blog.title, blog %></h2>
+      <p><%= truncate(blog.body, length: 200) %></p>
+      <div class="blog-meta">
+        <span class="badge <%= blog.published?  ? 'published' : 'unpublished' %>">
+          <%= blog.published?  ? 'Published' : 'Unpublished' %>
+        </span>
+        <span><%= blog.comments. count %> comments</span>
+        <span><%= blog.created_at.strftime("%B %d, %Y") %></span>
+      </div>
+    </div>
   <% end %>
-</div>
-
-<%= link_to "New blog", new_blog_path %>
+<% else %>
+  <div class="blog-card">
+    <p>No blogs found.</p>
+  </div>
+<% end %>
