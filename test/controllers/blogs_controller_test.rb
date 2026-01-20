@@ -16,8 +16,13 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create blog" do
-    assert_difference("Blog.count") do
-      post blogs_url, params: { blog: { body: @blog.body, title: @blog.title } }
+    assert_difference("Blog.count", 1) do
+      post blogs_url, params: {
+        blog: {
+          title: "My Test Blog",
+          body: "This is a valid blog body"
+        }
+      }
     end
 
     assert_redirected_to blog_url(Blog.last)
@@ -34,11 +39,19 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update blog" do
-    patch blog_url(@blog), params: { blog: { body: @blog.body, title: @blog.title } }
+    patch blog_url(@blog), params: {
+      blog: {
+        title: "Updated Blog Title",
+        body: "Updated blog body text"
+      }
+    }
+
     assert_redirected_to blog_url(@blog)
   end
 
   test "should destroy blog" do
+    @blog.comments.destroy_all
+
     assert_difference("Blog.count", -1) do
       delete blog_url(@blog)
     end

@@ -1,7 +1,7 @@
 namespace :benchmark do
   desc "Benchmark blog index query"
   task blog_index: :environment do
-    require 'benchmark'
+    require "benchmark"
 
     puts "Benchmarking Blog. all without includes:"
     time1 = Benchmark.measure do

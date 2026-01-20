@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :blogs, only: [:index, :show] do
-        resources :comments, only: [:index]
+      resources :blogs, only: [ :index, :show ] do
+        resources :comments, only: [ :index ]
       end
     end
   end
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get :published
       get :unpublished
     end
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [ :create, :destroy ]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

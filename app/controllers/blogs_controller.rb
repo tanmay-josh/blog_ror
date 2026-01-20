@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy, :publish]
+  before_action :set_blog, only: [ :show, :edit, :update, :destroy, :publish ]
 
   def index
     @blogs = Blog.published.order(created_at: :desc)
@@ -40,7 +40,6 @@ class BlogsController < ApplicationController
 
   def publish
     service = PublishBlogService.new(@blog)
-    
     if service.call
       redirect_to @blog, notice: "Blog was successfully published."
     else

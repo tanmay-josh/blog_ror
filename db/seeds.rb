@@ -19,7 +19,6 @@ Blog.destroy_all
     body:  "This is the content for blog post number #{i + 1}.  It contains some interesting information.",
     published: i < 10  # First 10 are published
   )
-  
   if blog.published?
     rand(1..5).times do
       blog.comments.create(body: "This is a comment on blog #{i + 1}")
